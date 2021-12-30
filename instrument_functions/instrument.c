@@ -21,7 +21,7 @@ void __attribute__((no_instrument_function)) __cyg_profile_func_enter(void *func
 
     if (dladdr(func, &info))
     {
-        fprintf(file, "> Entering %s (%s)\n", info.dli_sname ? info.dli_sname : "<unknown>", info.dli_fname);
+        fprintf(file, "Entering %s (%s)\n", info.dli_sname ? info.dli_sname : "<unknown>", info.dli_fname);
     }
 }
 
@@ -32,7 +32,7 @@ void __attribute__((no_instrument_function)) __cyg_profile_func_exit(void *func,
 
     if (dladdr(func, &info))
     {
-        fprintf(file, "< Exiting  %s (%s)\n", info.dli_sname ? info.dli_sname : "<unknown>", info.dli_fname);
+        fprintf(file, "Exiting  %s (%s)\n", info.dli_sname ? info.dli_sname : "<unknown>", info.dli_fname);
     }
 }
 

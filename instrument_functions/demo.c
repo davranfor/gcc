@@ -1,20 +1,21 @@
 /*
-NOTE: (-g is optional)
-
-gcc -Wall -Wpedantic -Wextra -finstrument-functions -export-dynamic -g -D_GNU_SOURCE demo.c instrument.c -o demo -ldl
+gcc -Wall -Wpedantic -Wextra -finstrument-functions -export-dynamic -D_GNU_SOURCE demo.c instrument.c -o demo -ldl
 ./demo
 cat trace
 */
 
-int do_multi(int a, int b) { return a * b; }
-int do_add(int a, int b) { return a + b; }
-void do_calc(int a, int b) { do_multi(a, b); }
+int add(int a, int b) { return a + b; }
+int sub(int a, int b) { return a - b; }
+int mul(int a, int b) { return a * b; }
+int div(int a, int b) { return a / b; }
 
 int main(void)
 {
-    int a = 4, b = 5;
+    int a = 2, b = 3;
 
-    do_calc(a, b);
-    do_add(a, b);
+    add(a, b);
+    sub(a, b);
+    mul(a, b);
+    div(a, b);
     return 0;
 }
