@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Compile shared library
+
+# -fPIC: Compile with Position Independent Code
+gcc -std=c11 -Wall -Wpedantic -Wextra -shared -o libmylib.so -fPIC mylib.c
+
+# Same than
+# gcc -std=c11 -Wall -Wpedantic -Wextra -c -fPIC mylib.c -o mylib.o
+# gcc mylib.o -shared -o libmylib.so
+
+# Compile program and link with shared library
+
+# You can avoid using -L placing the library in a standard location i.e. /usr/local/lib
+gcc -std=c11 -Wall -Wpedantic -Wextra -o demo main.c -L. -lmylib
+
+# Make the library available at runtime
+
+# You can avoid export placing the library in a standard location i.e. /usr/local/lib
+# and running "ldconfig" as root
+export LD_LIBRARY_PATH=.:$LD_LIBRARY_PATH
+
+# Run program
+
+./demo
+
