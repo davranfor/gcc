@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Compile static library
+
+gcc -std=c11 -Wall -Wpedantic -Wextra -c mylib.c -o mylib.o
+# Compile more objects if needed
+
+# ar: Create package and make it usable by the linker
+ar rcs libmylib.a mylib.o
+# You can pack multiple files
+# ar rcs libmylib.a mylib1.o mylib2.o
+# or pack all objects together
+# ar rcs libmylib.a *.o
+
+# mylib.o is no longer needed
+rm mylib.o
+
+# Compile program and link with static library
+# libmylib.a is packed into demo
+
+gcc -std=c11 -Wall -Wpedantic -Wextra -o demo main.c -L. -lmylib
+
+# Run program
+
+./demo
+
